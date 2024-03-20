@@ -13,7 +13,9 @@ commands:
       RESUME="$OUTPUT/resume" ;
       mkdir -p "$$WORKDIR" ;
       revng analyze revng-initial-auto-analysis "$INPUT" --resume "$$RESUME" -o /dev/null ;
-      revng analyze revng-c-initial-auto-analysis "$INPUT" --resume "$$RESUME" -o - | revng model compare "${SOURCE}".model.yml ;
+      revng analyze revng-c-initial-auto-analysis "$INPUT" --resume "$$RESUME" -o "$$WORKDIR/generated_model.yml" ;
+      cat "$$WORKDIR/generated_model.yml" ;
+      cat "$$WORKDIR/generated_model.yml" | revng model compare "${SOURCE}".model.yml ;
       revng artifact decompile-to-single-file "$INPUT" --resume "$$RESUME" -o - | revng ptml -p > "$$WORKDIR/decompiled.c" ;
       revng artifact emit-model-header "$INPUT" --resume "$$RESUME" -o - | revng ptml -p > "$$WORKDIR/types-and-globals.h" ;
       revng artifact emit-helpers-header "$INPUT" --resume "$$RESUME" -o - | revng ptml -p > "$$WORKDIR/helpers.h" ;
