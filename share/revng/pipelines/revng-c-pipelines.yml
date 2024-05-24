@@ -159,7 +159,7 @@ Branches:
           - Type: model-to-header
             UsedContainers: [input, types-and-globals.h]
           - Type: decompile
-            UsedContainers: [module.ll, decompiled.tar.gz]
+            UsedContainers: [module.ll, cfg2.yml, decompiled.tar.gz]
         Artifacts:
           Container: decompiled.tar.gz
           Kind: decompiled

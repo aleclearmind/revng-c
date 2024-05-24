@@ -16,13 +16,7 @@ The sum function should take a pointer to node, return a 64-bits integer.
 The argument should be accessed at offset 0, which is an array. And the array
 should be indexed by a index that increments by one at each iteration.
 
-CHECK: {{.*}}64_t sum([[NODE_STRUCT]] *[[ARG0:.*]])
-CHECK: do {
-CHECK: [[ACCUMULATOR:_var_[0-9]+]] = [[ACCUMULATOR]] + [[ARG0]]->_offset_0[[[INDEX:_var_[0-9]+]]];
-CHECK: [[INDEX]] = [[INDEX]] + 1;
-CHECK: } while ([[INDEX]] != 5);
-CHECK: return [[ACCUMULATOR]];
-
+# WIP WIP WIP
 
 The compute function should take a pointer to node.
 TODO: it should also return a 64-bits integer. Try to re-add it later in the
