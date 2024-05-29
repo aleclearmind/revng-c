@@ -160,12 +160,12 @@ void setSegmentKeyMetadata(llvm::Function &SegmentRefFunction,
   auto *VSConstant = ConstantInt::get(Type::getInt64Ty(Context), VirtualSize);
   auto *VSMD = ConstantAsMetadata::get(VSConstant);
 
-  SegmentRefFunction.setMetadata(SegmentRefMDName, QMD.tuple({ SAMD, VSMD }));
+  SegmentRefFunction.setMetadata(FunctionTags::UniqueIDMDName, QMD.tuple({ SAMD, VSMD }));
 }
 
 bool hasSegmentKeyMetadata(const llvm::Function &F) {
   auto &Ctx = F.getContext();
-  auto SegmentRefMDKind = Ctx.getMDKindID(SegmentRefMDName);
+  auto SegmentRefMDKind = Ctx.getMDKindID(FunctionTags::UniqueIDMDName);
   return nullptr != F.getMetadata(SegmentRefMDKind);
 }
 
@@ -176,7 +176,7 @@ extractSegmentKeyFromMetadata(const llvm::Function &F) {
 
   auto &Ctx = F.getContext();
 
-  auto SegmentRefMDKind = Ctx.getMDKindID(SegmentRefMDName);
+  auto SegmentRefMDKind = Ctx.getMDKindID(FunctionTags::UniqueIDMDName);
   auto *Node = F.getMetadata(SegmentRefMDKind);
 
   auto *SAMD = cast<MDString>(Node->getOperand(0));
@@ -198,7 +198,7 @@ void setStringLiteralMetadata(llvm::Function &StringLiteralFunction,
   auto &Ctx = StringLiteralFunction.getContext();
 
   QuickMetadata QMD(M->getContext());
-  auto StringLiteralMDKind = Ctx.getMDKindID(StringLiteralMDName);
+  auto StringLiteralMDKind = Ctx.getMDKindID(FunctionTags::UniqueIDMDName);
 
   Constant *SAConstant = StartAddress.toValue(M);
   auto *SAMD = ConstantAsMetadata::get(SAConstant);
@@ -218,7 +218,7 @@ void setStringLiteralMetadata(llvm::Function &StringLiteralFunction,
 
 bool hasStringLiteralMetadata(const llvm::Function &F) {
   auto &Ctx = F.getContext();
-  auto StringLiteralMDKind = Ctx.getMDKindID(StringLiteralMDName);
+  auto StringLiteralMDKind = Ctx.getMDKindID(FunctionTags::UniqueIDMDName);
   return nullptr != F.getMetadata(StringLiteralMDKind);
 }
 
@@ -229,7 +229,7 @@ extractStringLiteralFromMetadata(const llvm::Function &F) {
 
   auto &Ctx = F.getContext();
 
-  auto StringLiteralMDKind = Ctx.getMDKindID(StringLiteralMDName);
+  auto StringLiteralMDKind = Ctx.getMDKindID(FunctionTags::UniqueIDMDName);
   auto *Node = F.getMetadata(StringLiteralMDKind);
 
   auto *SAMD = cast<ConstantAsMetadata>(Node->getOperand(0))->getValue();

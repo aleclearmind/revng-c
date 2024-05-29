@@ -42,7 +42,7 @@ public:
                                       Decompiled,
                                       2,
                                       InputPreservation::Preserve),
-                             Contract(CFG2,
+                             Contract(CFG,
                                       1,
                                       Decompiled,
                                       2,
@@ -51,7 +51,7 @@ public:
 
   void run(const pipeline::ExecutionContext &Ctx,
            pipeline::LLVMContainer &IRContainer,
-           const revng::pipes::CFGStringMap &CFGMap,
+           const revng::pipes::CFGMap &CFGMap,
            DecompileStringMap &DecompiledFunctionsContainer);
 
   llvm::Error checkPrecondition(const pipeline::Context &Ctx) const {

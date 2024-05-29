@@ -78,8 +78,6 @@ inline std::optional<int64_t> getSignedConstantArg(llvm::CallInst *Call,
 }
 
 inline const char *ExplicitParenthesesMDName = "revng.explicit_parentheses";
-inline const char *SegmentRefMDName = "revng.segment_ref";
-inline const char *StringLiteralMDName = "revng.cstring_literal";
 
 namespace llvm {
 

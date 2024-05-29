@@ -193,7 +193,7 @@ bool MakeSegmentRefPass::runOnModule(Module &M) {
                                                             {},
                                                             "segmentRef");
 
-              if (SegmentRefFunction->getMetadata(SegmentRefMDName) == nullptr)
+              if (SegmentRefFunction->getMetadata(FunctionTags::UniqueIDMDName) == nullptr)
                 setSegmentKeyMetadata(*SegmentRefFunction,
                                       StartAddress,
                                       VirtualSize);
